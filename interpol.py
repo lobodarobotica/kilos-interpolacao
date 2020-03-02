@@ -31,10 +31,20 @@ ynew = f(yy)
 # ynew3= f3(xnew)
 
 # plt.plot(x,y,'o',xnew,ynew,'-', xnew,ynew3, '--')
+
+kkk = []
+
+
+for i in range(0, len(ynew), 1000):
+    kkk.append(ynew[i])
+    print('oi amiguinho')
+
+print(kkk)
+
 plt.plot(x,y,'o',yy,ynew,'-')
 plt.show()
 
-plt.plot(xx,ynew,'o', xx, moving_average(ynew, n=4))
+plt.plot(kkk)
 plt.show()
 
 
