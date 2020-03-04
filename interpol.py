@@ -1,7 +1,11 @@
-import matplotlib.pyplot as plt
 import numpy as np
 from scipy import interpolate
-import pandas as p
+
+import pandas as pd
+import numpy as np
+from datetime import datetime
+import matplotlib.pyplot as plt
+import pyEX as p
 
 
 x = np.array([-100000,-65500,1500, 31400,80000]) 
@@ -14,44 +18,13 @@ xx = array_kilos[:,1]
 yy = array_kilos[:,2]
 
 f = interpolate.interp1d(x, y)
-# f3 = interpolate.interp1d(x, y, kind='cubic')
-
-
-# while True:
-#     print(f(input('Digite o strain: ')))
-# print(str(f))
-# # strain =input("Entre com o strain: ")
-# print(type(f))
-# print(dir(f))
-# xnew = np.arange(235001,309999,1)
-
-# xnew = np.linspace(0, 10, num=41, endpoint=True)
 ynew = f(yy)
 
-# ynew3= f3(xnew)
-
-# plt.plot(x,y,'o',xnew,ynew,'-', xnew,ynew3, '--')
+df = pd.DataFrame({'B': ynew})
+ttt = df.ewm(alpha=1).mean()
+ttt = df.ewm(com=100).mean()
 
 kkk = []
 
-
-for i in range(0, len(ynew), 1000):
-    kkk.append(ynew[i])
-    print('oi amiguinho')
-
-print(kkk)
-
-plt.plot(x,y,'o',yy,ynew,'-')
+plt.plot(ttt,'-')
 plt.show()
-
-plt.plot(kkk)
-plt.show()
-
-
-
-# plt.show()
-
-# response = a * int(strain) + b
-# print(response)
-# print(a, b)
-
