@@ -40,29 +40,22 @@ def timestamp_align(strain_big, array_big, array_small):
 
     return new_strain
 
-
-
 payload_sensor_1 = np.genfromtxt('kilos1.csv',delimiter='\t')
 payload_sensor_2 = np.genfromtxt('kilos2.csv',delimiter='\t')
 payload_sensor_3 = np.genfromtxt('kilos3.csv',delimiter='\t')
-
 
 timestamp_sensor_1 = payload_sensor_1[:,1]
 timestamp_sensor_2 = payload_sensor_2[:,1]
 timestamp_sensor_3 = payload_sensor_3[:,1]
 
-
 strain_sensor_1 = payload_sensor_1[:,2]
 strain_sensor_2 = payload_sensor_2[:,2]
 strain_sensor_3 = payload_sensor_3[:,2]
 
-range_timestamp_sensor_1 = []
-range_timestamp_sensor_2 = []
-range_timestamp_sensor_3 = []
-
-
-new_strain_sensor_3 = timestamp_align(strain_sensor_3,timestamp_sensor_3,timestamp_sensor_2)
 new_strain_sensor_1 = timestamp_align(strain_sensor_1,timestamp_sensor_1,timestamp_sensor_2)
+new_strain_sensor_3 = timestamp_align(strain_sensor_3,timestamp_sensor_3,timestamp_sensor_2)
+
+range_timestamp_sensor_2 = []
 
 range_strain_sensor_1 = []
 range_strain_sensor_2 = []
@@ -76,18 +69,14 @@ for i in range(370000, len(timestamp_sensor_2), 1):
         range_strain_sensor_2.append(strain_sensor_2[i]-120000)
         range_strain_sensor_3.append(new_strain_sensor_3[i]-0)
 
-
 media = []
 
 for i in range(0, len(range_timestamp_sensor_2)):
 
     media.append(((range_strain_sensor_2[i]) + range_strain_sensor_3[i] + range_strain_sensor_1[i])/3)
 
-
-
 x_data = np.array([-183000,-145300]) 
 y_data = np.array([0, 5000]) 
-
 
 # reg = LinearRegression().fit(X, y)
 
